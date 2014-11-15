@@ -21,7 +21,7 @@
 		
 		public function begin() : void
 		{
-			
+			new GameField(stage);
 		}
 	} //end class
 }
