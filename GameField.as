@@ -12,6 +12,7 @@ package
 	{
 		private var stageRef : DisplayObjectContainer;
 		private var mainClip : MovieClip;
+		private var ball : Ball;
 		
 		public function GameField(stage : Stage) : void
 		{
@@ -19,6 +20,8 @@ package
 			
 			mainClip = new GameClip;
 			stage.addChild(mainClip);
+			
+			ball = new Ball(mainClip);
 		}
 	}
 	
