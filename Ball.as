@@ -17,7 +17,7 @@ package
 		public function Ball (parent : DisplayObjectContainer) 
 		{
 			location = new Point (40, 40);
-			heading = new Point (1.0, 10.0);
+			heading = new Point (1.0, 1.0);
 			
 			clip = new BallClip();
 			parent.addChild(clip);
@@ -28,6 +28,13 @@ package
 		{
 			clip.x = location.x;
 			clip.y = location.y;
+		}
+		
+		public function moveBall() : void
+		{
+			location.x += heading.x;
+			location.y += heading.y;
+			update();
 		}
 	}
 	

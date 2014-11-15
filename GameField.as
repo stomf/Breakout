@@ -3,6 +3,7 @@ package
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.Stage;
+	import flash.events.Event;
 	
 	/**
 	 * ...
@@ -22,6 +23,13 @@ package
 			stage.addChild(mainClip);
 			
 			ball = new Ball(mainClip);
+			
+			stageRef.addEventListener(Event.ENTER_FRAME, eachFrame);
+		}
+		
+		private function eachFrame(e : Event) : void
+		{
+			ball.moveBall();
 		}
 	}
 	
