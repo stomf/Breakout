@@ -1,0 +1,5 @@
+Main: 303C74
+Light: 515D91
+Lighter: 7B84AE
+Dark: 172357
+Darker: 07103A
