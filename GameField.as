@@ -45,6 +45,7 @@ package
 		
 		private function eachFrame(e : Event) : void
 		{
+			ball.checkCollisions(surfaces);
 			ball.moveBall();
 		}
 	}

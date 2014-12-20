@@ -31,10 +31,49 @@ package
 					throw new Error("Invalid horizontal surface");
 				}
 			}
-
 			
 		}
 		
+		public function ding() : void
+		{
+			//something hit this surface.
+		}
+		
+		public function getFacing() : Point
+		{
+			return facing;
+		}
+		
+		public function getP1() : Point
+		{
+			return p1;
+		}
+		
+		public function getP2() : Point
+		{
+			return p2;
+		}
+		
+		public function getMinX() : Number
+		{
+			return Math.min(p1.x, p2.x);
+		}
+
+		public function getMinY() : Number
+		{
+			return Math.min(p1.y, p2.y);
+		}
+
+		public function getMaxX() : Number
+		{
+			return Math.max(p1.x, p2.x);
+		}
+
+		public function getMaxY() : Number
+		{
+			return Math.max(p1.y, p2.y);
+		}
+
 	}
 
 }
