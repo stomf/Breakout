@@ -10,9 +10,11 @@ package
 		private var p1 : Point;
 		private var p2 : Point;
 		private var facing : Point;
+		private var owner : GameObject;
 		
-		public function Surface(p1 : Point, p2 : Point, facing : Point) 
+		public function Surface(p1 : Point, p2 : Point, facing : Point, owner : GameObject) 
 		{
+			this.owner = owner;
 			this.p1 = new Point (p1.x, p1.y);
 			this.p2 = new Point (p2.x, p2.y);
 			this.facing = facing;
@@ -37,6 +39,7 @@ package
 		public function ding() : void
 		{
 			//something hit this surface.
+			owner.ding(facing);
 		}
 		
 		public function getFacing() : Point

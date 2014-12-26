@@ -13,7 +13,7 @@ package
 	public class GameField 
 	{
 		private var stageRef : DisplayObjectContainer;
-		private var mainClip : MovieClip;
+		private var mainClip : Border;
 		private var ball : Ball;
 		private var surfaces : Vector.<Surface>;
 		
@@ -22,31 +22,40 @@ package
 			stageRef = stage;
 			
 			surfaces = new Vector.<Surface>();
-			declareWalls();
-			mainClip = new GameClip;
-			stage.addChild(mainClip);
 			
-			ball = new Ball(mainClip);
+			mainClip = new Border;
+			stage.addChild(mainClip.getClip());
+			declareWalls();
+			
+			ball = new Ball(mainClip.getClip());
+			addBrick();
 			
 			stageRef.addEventListener(Event.ENTER_FRAME, eachFrame);		
 		}
 		
 		private function declareWalls()
 		{
-			var topWall : Surface = new Surface(new Point(10, 10), new Point(630, 10), Globals.DOWN());
-			surfaces.push(topWall);
-			var leftWall : Surface = new Surface(new Point(10, 10), new Point(10, 470), Globals.RIGHT());
-			surfaces.push(leftWall);
-			var rightWall : Surface = new Surface(new Point(630, 10), new Point(630, 470), Globals.LEFT());
-			surfaces.push(rightWall);
-			var bottomWall : Surface = new Surface(new Point(10, 470), new Point(630, 470), Globals.UP());
-			surfaces.push(bottomWall);
+			mainClip.declareSurfaces(surfaces);
 		}
 		
 		private function eachFrame(e : Event) : void
 		{
 			ball.checkCollisions(surfaces);
 			ball.moveBall();
+		}
+		
+		private function addBrick() : void
+		{
+			for (var i : int = 0; i < 80; i++)
+			{
+				
+				var b : Brick = new Brick(Math.floor(Math.random()*15), Math.floor(Math.random()*28), mainClip.getClip());
+				b.declareSurfaces(surfaces);
+				
+			}
+			
+			trace (surfaces.length);
+			
 		}
 	}
 	

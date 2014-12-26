@@ -20,8 +20,8 @@ package
 		public function Ball (parent : DisplayObjectContainer) 
 		{
 			location = new Point (40, 40);
-			heading = new Point (10.1, 3.7123);
-			size = new Point (5.0, 5.0);
+			heading = new Point (2.1, 3.2123);
+			size = new Point (4.0, 4.0);
 
 			clip = new BallClip();
 			parent.addChild(clip);
@@ -83,12 +83,12 @@ package
 			if (vHit)
 			{
 				heading.y = -heading.y;
-				location.y -= minYDist;
+				//location.y -= minYDist;
 			}
 			if (hHit)
 			{
 				heading.x = -heading.x;
-				location.x -= minXDist;
+				//location.x -= minXDist;
 			}
 
 		}
@@ -101,7 +101,7 @@ package
 			{
 				var spercent : Number = yDist / heading.y;
 				var xPoint : Number = location.x + (heading.x * spercent);
-				if (xPoint > s.getMinX() && xPoint < s.getMaxX())
+				if (xPoint + size.x > s.getMinX() && xPoint - size.x < s.getMaxX())
 				{
 					s.ding();
 					minYDist = Math.min(yDist, minYDist);
@@ -113,13 +113,13 @@ package
 		
 		private function checkBounceDown(s : Surface) : Boolean
 		{
-			var yDist : Number = s.getP1().y + size.y - location.y;
+			var yDist : Number = (s.getP1().y - location.y) + size.y;
 			
 			if (yDist < 0 && yDist >= heading.y)
 			{
-				var spercent : Number = -yDist / heading.y;
+				var spercent : Number = yDist / heading.y;
 				var xPoint : Number = location.x + (heading.x * spercent);
-				if (xPoint > s.getMinX() && xPoint < s.getMaxX())
+				if (xPoint + size.x > s.getMinX() && xPoint - size.x < s.getMaxX())
 				{
 					s.ding();
 					minYDist = Math.max(yDist, minYDist);
@@ -137,7 +137,7 @@ package
 			{
 				var spercent : Number = xDist / heading.x;
 				var yPoint : Number = location.y + (heading.y * spercent);
-				if (yPoint > s.getMinY() && yPoint < s.getMaxY())
+				if (yPoint + size.y > s.getMinY() && yPoint - size.y < s.getMaxY())
 				{
 					s.ding();
 					minXDist = Math.min(xDist, minXDist);
@@ -149,13 +149,13 @@ package
 		
 		private function checkBounceRight(s : Surface) : Boolean
 		{
-			var xDist : Number = s.getP1().x + size.x - location.x;
+			var xDist : Number = (s.getP1().x - location.x) + size.x;
 			
 			if (xDist < 0 && xDist >= heading.x)
 			{
-				var spercent : Number = -xDist / heading.x;
+				var spercent : Number = xDist / heading.x;
 				var yPoint : Number = location.y + (heading.y * spercent);
-				if (yPoint > s.getMinY() && yPoint < s.getMaxY())
+				if (yPoint + size.y > s.getMinY() && yPoint - size.y < s.getMaxY())
 				{
 					s.ding();
 					minXDist = Math.max(xDist, minXDist);
